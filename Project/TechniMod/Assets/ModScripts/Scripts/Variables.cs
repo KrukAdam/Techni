@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Variables : MonoBehaviour
@@ -9,7 +10,10 @@ public class Variables : MonoBehaviour
     public bool Bool = false;
     public string String = "";
     public EnumTemp EnumT = EnumTemp.None;
+
 }
+
+
 public enum EnumTemp
 {
     None,

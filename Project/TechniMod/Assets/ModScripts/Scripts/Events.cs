@@ -37,9 +37,14 @@ public class Events : MonoBehaviour
 {
     public EventsProvider eventsProvider;
 
-    private void Start()
+    private void OnEnable()
     {
         eventsProvider.OnHit += UseEvent;
+    }
+
+    private void OnDisable()
+    {
+        eventsProvider.OnHit -= UseEvent;
     }
 
     private void UseEvent(GameObject go)
