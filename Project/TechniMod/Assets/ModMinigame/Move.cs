@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+
+    public Rigidbody2D rb;
     public float speed;
+    public float horizontal;
 
-    [SerializeField] private Rigidbody2D rb;
-
-    private float horizontal;
 
     void Update()
     {
