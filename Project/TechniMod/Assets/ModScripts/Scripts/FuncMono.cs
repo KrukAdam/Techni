@@ -8,6 +8,8 @@ namespace ModScripts
         //Opis najwa¿niejszych metod w MonoBehaviour
         //Pe³ny opis: https://mwin.pl/poznac-funkcje-unity/
 
+        public GameObject prefab1;
+        public Move prefab2;
 
         private void Awake()
         {
@@ -16,6 +18,24 @@ namespace ModScripts
             //Jednak wykonuje siê tylko, gdy obiekt jest aktywny.
             //Jeœli nie jest, to funkcja jest pierwsz¹, która siê wykona,
             //gdy zostanie aktywowany
+
+            var obj1 = Instantiate(prefab1);
+            obj1.transform.position = Vector3.zero;
+            obj1.GetComponent<Move>().speed = 1;
+
+            var obj2 = Instantiate(prefab2);
+            obj2.speed = 1.0f;
+
+
+        }
+
+        void Start()
+        {
+            //Wykonuje siê przed aktualizacj¹ pierwszej klatki.
+            //Jedyna uwaga: instancja obiektu musi byæ w³¹czona,
+            //a skrypt aktywny. Gdy Awake traktujemy jako konstruktor,
+            //to funkcje Start powinniœmy wykorzystaæ do utworzenia relacji
+            //skryptu z pozosta³ymi.
         }
 
         private void OnEnable()
@@ -27,8 +47,15 @@ namespace ModScripts
             //wykonuje siê przy ka¿dej aktywacji komponentu.
         }
 
+        private void OnDisable()
+        {
+            //Wywo³ane gdy obiekt posiadaj¹cy skrypt stanie
+            //wy³¹czony (disabled) albo nieaktywny (inactive).
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
+
             //W przeciwieñstwie do OnTriggerEnter,
             //OnCollisionEnter przekazuje klasê Collision,
             //a nie Collider. Klasa Collision zawiera informacje
@@ -62,20 +89,12 @@ namespace ModScripts
             //(Exit) i na pozostanie w kontakcie (Stay)
         }
 
-        private void OnDisable()
+        void Update()
         {
-            //Wywo³ane gdy obiekt posiadaj¹cy skrypt stanie
-            //wy³¹czony (disabled) albo nieaktywny (inactive).
+            //Funkcja wykonuj¹ca siê raz na klatkê.
+            // czas -= Time.delataTime
         }
 
-        void Start()
-        {
-            //Wykonuje siê przed aktualizacj¹ pierwszej klatki.
-            //Jedyna uwaga: instancja obiektu musi byæ w³¹czona,
-            //a skrypt aktywny. Gdy Awake traktujemy jako konstruktor,
-            //to funkcje Start powinniœmy wykorzystaæ do utworzenia relacji
-            //skryptu z pozosta³ymi.
-        }
         private void FixedUpdate()
         {
             //Po tym evencie wykonuj¹ siê wszystkie obliczenia fizyki
@@ -89,11 +108,8 @@ namespace ModScripts
             //odstêpach czasu. T¹ funkcjê powinniœmy wykorzystywaæ,
             //gdy chcemy przeprowadzaæ obliczenia zwi¹zane z fizyk¹.
         }
-        void Update()
-        {
-            //Funkcja wykonuj¹ca siê raz na klatkê.
-            // czas -= Time.delataTime
-        }
+
+
 
         private void LateUpdate()
         {

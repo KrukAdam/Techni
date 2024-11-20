@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,15 +10,20 @@ public class AccessModifier : MonoBehaviour
     //private - nie widoczne w inspektorze/nie widoczne w innych klasach
     //protected - nie widoczne w inspektorze/widoczne jedynie w klasach dziedzicz¹cych
     //*internal - nie widoczny w inspektorze/widoczne w obrêbie jednego assembly
-   
+ 
+    public int test1 = 3;
+    public float test2 = 2.344f;
+    public string test3 = "test";
+    public bool test4 = false;
 
+ 
     public int m_Int = 0;
     private float m_Float = 0;
     protected int m_intPro = 1;
     internal int m_intInternal = 1;
 
     [SerializeField] private string m_String = "";  //[SerializeField] - atrybut dziêki któremu widzimy private zmienn¹ w inspektorze
-
+    
     public int x_Int3 { get; set; } //Getter i setter w skrócie, taki zapis nie jest widoczny w inspektorze
     [SerializeField] private int x_Int2 { get; set; } //Taki zapis atrybutu nie udostêpni nam widocznoœci zmiennej w inspektorze
     [field: SerializeField] public int z_Int { get; set; } //Taki zapis atrybutu udostêpnia nam zmienn¹ w inspektorze
@@ -32,9 +38,10 @@ public class AccessModifier : MonoBehaviour
 
     private void Awake()
     {
-        wait = new WaitForSeconds(x_Int2);
+        //wait = new WaitForSeconds(x_Int2);
 
-        StartCoroutine(Timer(x_Int)); //W taki sposób uruchamiamy func Coroutine
+        //StartCoroutine(Timer(x_Int)); //W taki sposób uruchamiamy func Coroutine
+
     }
 
     public IEnumerator Timer(float RANDOM)
@@ -46,4 +53,6 @@ public class AccessModifier : MonoBehaviour
 
         //Logika po czasie
     }
+
 }
+
